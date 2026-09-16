@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CyberShield | Ethical Hacking & Cybersecurity</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#05080d;color:#e8f1f8;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,92%);margin:auto}
+nav{position:sticky;top:0;z-index:10;background:rgba(5,8,13,.9);backdrop-filter:blur(12px);border-bottom:1px solid #173047}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:800;letter-spacing:.5px}.logo span{color:#21f39a}
+.navlinks{display:flex;gap:25px;font-size:14px;color:#a9bac8}
+.navlinks a:hover{color:#21f39a}
+.btn{display:inline-block;padding:12px 19px;border:1px solid #21f39a;border-radius:8px;color:#21f39a;font-weight:700}
+.btn:hover{background:#21f39a;color:#03100a}
+.hero{min-height:78vh;display:flex;align-items:center;background:radial-gradient(circle at 80% 25%,#103b43 0,transparent 34%),linear-gradient(135deg,#05080d,#07121b)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.badge{display:inline-block;border:1px solid #1b5c55;padding:7px 12px;border-radius:30px;color:#63f5ba;font-size:13px;margin-bottom:18px}
+h1{font-size:clamp(42px,6vw,72px);line-height:1.02;margin-bottom:20px}
+h1 span{color:#21f39a}
+.hero p{color:#a9bac8;max-width:620px;font-size:18px;margin-bottom:28px}
+.actions{display:flex;gap:14px;flex-wrap:wrap}
+.terminal{background:#071018;border:1px solid #1a394c;border-radius:14px;box-shadow:0 0 50px rgba(33,243,154,.08);overflow:hidden}
+.termbar{padding:12px 15px;border-bottom:1px solid #173047;color:#7790a2;font-size:12px}.dots{display:inline-flex;gap:5px;margin-right:10px}.dots i{width:8px;height:8px;border-radius:50%;background:#547080;display:block}
+pre{padding:22px;color:#7fffc4;font:14px/1.8 Consolas,monospace;min-height:310px;white-space:pre-wrap}
+section{padding:85px 0}
+.section-title{text-align:center;margin-bottom:42px}.section-title h2{font-size:36px}.section-title p{color:#8499a8;margin-top:8px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:#09121a;border:1px solid #173047;border-radius:14px;padding:26px;transition:.25s}
+.card:hover{transform:translateY(-5px);border-color:#21f39a}
+.icon{font-size:28px;margin-bottom:12px}.card h3{margin-bottom:8px}.card p{color:#91a5b4;font-size:14px}
+.course{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.course .card{position:relative}.tag{font-size:11px;color:#21f39a;border:1px solid #1b5c55;padding:4px 8px;border-radius:20px;display:inline-block;margin-bottom:15px}
+.about{background:#071018}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}.about p{color:#9aabba;margin-top:14px}
+.list{margin-top:20px;display:grid;gap:10px}.list div{color:#c7d5df}.list b{color:#21f39a;margin-right:8px}
+.contact{max-width:720px;margin:auto;text-align:center}.contact p{color:#9aabba;margin:12px 0 25px}
+footer{border-top:1px solid #173047;padding:25px 0;color:#718594;font-size:13px;text-align:center}
+@media(max-width:800px){.navlinks{display:none}.hero-grid,.about-grid{grid-template-columns:1fr}.cards,.course{grid-template-columns:1fr}.hero{padding:70px 0}.terminal{margin-top:10px}}
+
+/* 3D animated cyber grid */
+.hero{position:relative;overflow:hidden}
+.hero:before{
+  content:"";position:absolute;inset:-40%;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(rgba(33,243,154,.10) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(33,243,154,.10) 1px,transparent 1px);
+  background-size:55px 55px;
+  transform:perspective(500px) rotateX(62deg) translateY(18%);
+  transform-origin:center bottom;
+  animation:gridMove 8s linear infinite;
+  mask-image:linear-gradient(to top,black,transparent 75%);
+}
+.hero:after{
+  content:"";position:absolute;width:260px;height:260px;right:8%;top:18%;
+  border:1px solid rgba(33,243,154,.35);border-radius:50%;
+  box-shadow:0 0 30px rgba(33,243,154,.12), inset 0 0 30px rgba(33,243,154,.08);
+  animation:orb 7s ease-in-out infinite;
+  pointer-events:none;
+}
+.hero-grid{position:relative;z-index:1}
+@keyframes gridMove{from{background-position:0 0,0 0}to{background-position:0 110px,110px 0}}
+@keyframes orb{0%,100%{transform:translateY(0) rotateX(12deg) rotateY(-12deg) scale(1)}
+50%{transform:translateY(-22px) rotateX(-12deg) rotateY(18deg) scale(1.08)}}
+
+/* Floating 3D security cubes */
+.cyber-cubes{position:absolute;inset:0;pointer-events:none;z-index:0}
+.cube{position:absolute;width:42px;height:42px;border:1px solid rgba(33,243,154,.5);
+  background:rgba(33,243,154,.035);box-shadow:0 0 22px rgba(33,243,154,.12);
+  transform-style:preserve-3d;animation:floatCube 9s ease-in-out infinite}
+.cube:nth-child(1){left:7%;top:20%;animation-delay:-2s}
+.cube:nth-child(2){right:6%;bottom:18%;width:55px;height:55px;animation-delay:-5s}
+.cube:nth-child(3){left:43%;top:10%;width:25px;height:25px;animation-delay:-7s}
+@keyframes floatCube{
+  0%,100%{transform:translate3d(0,0,0) rotateX(0) rotateY(0) rotateZ(0)}
+  50%{transform:translate3d(20px,-35px,40px) rotateX(180deg) rotateY(220deg) rotateZ(90deg)}
+}
+
+
+/* ===== Professional layout upgrade ===== */
+:root{--bg:#05080d;--panel:#0a141d;--line:#183244;--text:#eef7fb;--muted:#91a6b5;--accent:#21f39a}
+body{background:var(--bg);color:var(--text)}
+nav{background:rgba(3,7,11,.94);border-bottom:1px solid rgba(33,243,154,.13)}
+.logo{letter-spacing:1px}
+.navlinks a{transition:.2s}
+.hero{min-height:88vh;padding:70px 0}
+.hero-grid{gap:70px}
+.hero h1{font-weight:850;letter-spacing:-2px}
+.hero p{font-size:17px;line-height:1.8}
+.badge{letter-spacing:.8px;background:rgba(33,243,154,.04)}
+.btn{transition:.2s;box-shadow:0 0 0 rgba(33,243,154,0)}
+.btn:hover{box-shadow:0 0 24px rgba(33,243,154,.18)}
+.terminal{transform:perspective(900px) rotateY(-5deg) rotateX(2deg);transition:.35s}
+.terminal:hover{transform:perspective(900px) rotateY(0) rotateX(0) translateY(-4px)}
+section{padding:95px 0}
+.section-title h2{font-size:clamp(30px,4vw,42px);letter-spacing:-.8px}
+.section-title p{font-size:15px}
+.cards,.course{gap:24px}
+.card{background:linear-gradient(145deg,rgba(10,20,29,.98),rgba(7,14,21,.98));border:1px solid rgba(52,92,112,.55);box-shadow:0 12px 35px rgba(0,0,0,.18);min-height:190px}
+.card h3{font-size:20px}
+.card p{line-height:1.75}
+.icon{width:54px;height:54px;display:grid;place-items:center;border:1px solid rgba(33,243,154,.18);border-radius:12px;background:rgba(33,243,154,.04)}
+.about{background:linear-gradient(180deg,#071018,#050b11)}
+.about-grid{gap:70px}
+.about-grid h2{font-size:clamp(30px,4vw,44px);letter-spacing:-1px}
+.list{background:#09131c;border:1px solid var(--line);padding:24px;border-radius:16px}
+.list div{padding:13px 0;border-bottom:1px solid rgba(24,50,68,.65);font-size:14px}
+.list div:last-child{border-bottom:0}
+.contact{padding:10px 0}
+.contact h2{font-size:clamp(30px,4vw,44px)}
+footer{background:#03070b;padding:30px 0}
+@media(max-width:800px){
+ .hero{min-height:auto;padding:65px 0}
+ .terminal{transform:none}
+ section{padding:70px 0}
+ .card{min-height:auto}
+}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="container nav">
+    <div class="logo">Cyber<span>Shield</span> ⚡</div>
+    <div class="navlinks">
+      <a href="#services">Services</a><a href="#courses">Courses</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </div>
+    <a class="btn" href="#contact">Get Started</a>
+  </div>
+</nav>
+
+<header class="hero">
+<div class="cyber-cubes"><i class="cube"></i><i class="cube"></i><i class="cube"></i></div>
+<div class="container hero-grid">
+  <div>
+    <div class="badge">● ETHICAL HACKING • CYBERSECURITY</div>
+    <h1>Secure the digital world.<br><span>Think like a hacker.</span></h1>
+    <p>Professional cybersecurity education and ethical security services focused on protecting systems, networks and applications.</p>
+    <div class="actions"><a class="btn" href="#courses">Explore Courses</a><a class="btn" href="#services">Our Services</a></div>
+  </div>
+  <div class="terminal">
+    <div class="termbar"><span class="dots"><i></i><i></i><i></i></span>security-terminal</div>
+    <pre id="terminal"></pre>
+  </div>
+</div>
+</header>
+
+<section id="services">
+<div class="container">
+<div class="section-title"><div class="badge">WHAT WE DO</div><h2>Professional Security Services</h2><p>Defensive security and authorized testing for modern digital environments.</p></div>
+<div class="cards">
+  <div class="card"><div class="icon">🛡️</div><h3>Vulnerability Assessment</h3><p>Identify and prioritize security weaknesses in authorized systems.</p></div>
+  <div class="card"><div class="icon">🌐</div><h3>Network Security</h3><p>Assess network architecture, configurations and defensive controls.</p></div>
+  <div class="card"><div class="icon">🔐</div><h3>Web Security</h3><p>Learn secure application testing and practical defense techniques.</p></div>
+</div>
+</div>
+</section>
+
+<section id="courses" class="about">
+<div class="container">
+<div class="section-title"><div class="badge">TRAINING</div><h2>Build Cybersecurity Skills</h2><p>Practical learning designed around legal, permission-based lab environments.</p></div>
+<div class="course">
+  <div class="card"><span class="tag">BEGINNER</span><h3>Cybersecurity Fundamentals</h3><p>Networking, Linux, security concepts and common threats.</p></div>
+  <div class="card"><span class="tag">INTERMEDIATE</span><h3>Ethical Hacking</h3><p>Reconnaissance, vulnerability analysis and authorized security testing.</p></div>
+  <div class="card"><span class="tag">ADVANCED</span><h3>Web Application Security</h3><p>Understand common web vulnerabilities and secure coding practices.</p></div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container about-grid">
+  <div><div class="badge">WHY CYBERSHIELD?</div><h2>Security starts with knowledge.</h2><p>Our approach combines practical cybersecurity learning with responsible, permission-based testing.</p></div>
+  <div class="list">
+    <div>✓ <b>Authorized</b> — Test only systems you own or have permission to assess.</div>
+    <div>✓ <b>Practical</b> — Hands-on labs and realistic security scenarios.</div>
+    <div>✓ <b>Defensive</b> — Learn how to detect, fix and prevent vulnerabilities.</div>
+    <div>✓ <b>Professional</b> — Build skills for a cybersecurity career.</div>
+  </div>
+</div>
+</section>
+
+<section id="contact" class="about">
+<div class="container contact">
+  <div class="badge">START YOUR JOURNEY</div>
+  <h2>Ready to learn cybersecurity?</h2>
+  <p>Professional Ethical Hacking & Cybersecurity — Contact Aman Kumar for authorized security learning and services.</p>
+  <a class="btn" href="tel:+917903725061">📞 Call Aman Kumar</a>
+</div>
+</section>
+
+<footer>© 2026 CyberShield | Aman Kumar | 📞 +91 79037 25061<br>Built for ethical and authorized cybersecurity education.</footer>
+
+<script>
+const lines=[
+"$ cyberShield --status",
+"> Initializing secure environment...",
+"> Network .......... protected",
+"> Threat detection . active",
+"> Learning mode ..... enabled",
+"> Authorization ..... REQUIRED",
+"",
+"$ echo \"Think. Test. Secure.\""
+];
+let i=0,j=0,el=document.getElementById("terminal");
+function type(){
+ if(i<lines.length){
+   if(j<lines[i].length){el.textContent+=lines[i][j++];setTimeout(type,28)}
+   else{el.textContent+="\n";i++;j=0;setTimeout(type,180)}
+ }
+}
+type();
+
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(700px) rotateX(${-y*7}deg) rotateY(${x*7}deg) translateY(-5px)`;
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+
+</script>
+</body>
+</html>
